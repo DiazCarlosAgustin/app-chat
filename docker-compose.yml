@@ -1,0 +1,9 @@
+version: "3.9"
+services: 
+  web: 
+    build: .
+    container_name: vite-react
+    command: npm run dev
+    image: vite-react:latest
+    ports: 
+      - '8000:3000'
