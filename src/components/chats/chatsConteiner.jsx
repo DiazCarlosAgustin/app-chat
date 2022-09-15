@@ -9,8 +9,8 @@ import { getUsers } from "../../actions/contacts";
 
 // import sockets from "../../services/socket";
 
-function ChatsConteiner({ getMessagesByUser, dispatch, contacts }) {
-	const id = "630ade79b79c820ab6e2229f";
+function ChatsConteiner({ getMessagesByUser, dispatch, contacts, user }) {
+	const id = user._id;
 	const server = "http://localhost:3050";
 	const socket = io(server);
 
@@ -41,6 +41,7 @@ function ChatsConteiner({ getMessagesByUser, dispatch, contacts }) {
 const mapStateToProps = (state) => {
 	return {
 		contacts: state.contacts.contacts,
+		user: state.users.user,
 	};
 };
 

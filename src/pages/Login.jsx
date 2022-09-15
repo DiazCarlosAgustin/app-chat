@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { login_user } from "../actions/user";
 import { Navigate, useLocation } from "react-router-dom";
-function Login({ dispatch, isAuthenticated }) {
+function Login({ dispatch }) {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const location = useLocation();
@@ -14,16 +14,13 @@ function Login({ dispatch, isAuthenticated }) {
 
 		setUsername("");
 		setPassword("");
-
-		if (isAuthenticated === "true" || isAuthenticated === true) {
-			console.log("entre ql");
-			window.location.href = "/";
-		}
+		//window.location.href = "/";
 	};
-	if (isAuthenticated === "true" || isAuthenticated === true) {
-		console.log("entre ql");
+
+	if (localStorage.getItem("isAuthenticated") === "true") {
 		window.location.href = "/";
 	}
+
 	return (
 		<div className="login_main">
 			<div className="login_form">
@@ -73,6 +70,7 @@ function Login({ dispatch, isAuthenticated }) {
 const mapStateToProps = (state) => {
 	return {
 		isAuthenticated: state.users.isAuthenticated,
+		user: state.users.user,
 	};
 };
 

@@ -4,7 +4,11 @@ import { Navigate } from "react-router-dom";
 
 function ProtectedR({ children, isAuthenticated }) {
 	console.log(isAuthenticated);
-	return isAuthenticated ? children : <Navigate to="/login" />;
+	return isAuthenticated || isAuthenticated === "true" ? (
+		children
+	) : (
+		<Navigate to="/login" />
+	);
 }
 const mapStateToProps = (state) => {
 	return {

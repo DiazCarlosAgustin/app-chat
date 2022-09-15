@@ -1,7 +1,7 @@
 import { LOGIN_USER, LOGOUT_USER } from "../../actions/types";
 
 const initialState = {
-	isAuthenticated: localStorage.getItem("isAuthenticated"),
+	isAuthenticated: localStorage.getItem("isAuthenticated") || false,
 	user: JSON.parse(localStorage.getItem("user")),
 	token: localStorage.getItem("token"),
 };

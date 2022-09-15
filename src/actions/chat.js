@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CHAT_BY_USER } from "./types";
+import { GET_CHAT_BY_USER, POST_NEW_MESSAGE } from "./types";
 import { server } from "../services/server";
 
 export async function getChatByUser(from, to) {
@@ -15,5 +15,12 @@ export async function getChatByUser(from, to) {
 	return {
 		type: GET_CHAT_BY_USER,
 		payload: req,
+	};
+}
+
+export async function send_new_message(msg) {
+	return {
+		type: POST_NEW_MESSAGE,
+		payload: msg,
 	};
 }
