@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import logout_user from "../../actions/user";
 import { Navigate, useLocation } from "react-router-dom";
+import {
+	ListItem,
+	ListItemIcon,
+	ListItemText,
+	Box,
+	Avatar,
+} from "@mui/material";
+
 function HeadProfile({ dispatch, user, isAuthenticated }) {
 	const location = useLocation();
 	const handleLogout = () => {
@@ -9,38 +17,31 @@ function HeadProfile({ dispatch, user, isAuthenticated }) {
 		return <Navigate to="/login" state={{ from: location }} replace />;
 	};
 	return (
-		<div className="sider_header">
-			<div className="sider_image_profile">
+		<ListItem>
+			<ListItemIcon className="sider_image_profile">
 				{user.image.includes("http") ? (
-					<img
+					<Avatar
 						src={`${user.image}`}
 						loading="lazy"
 						alt="img_profile"
-						width="50"
-						height="45"
 						className="image__profile"
 					/>
 				) : (
-					<img
+					<Avatar
 						src={`http://localhost:3050/img/${user.image}`}
 						loading="lazy"
 						alt="img_profile"
-						width="50"
-						height="45"
-						className="image__profile"
 					/>
 				)}
-			</div>
-			<div className="sider_data_profile">
-				<div className="sider_name">{user.username}</div>
-				<div className="sider_status">
+			</ListItemIcon>
+			<ListItemText>
+				<div>{user.username}</div>
+				<Box sx={{ display: "flex", justifyContent: "space-between" }}>
 					<span>{isAuthenticated ? "Connected" : "Offline"}</span>
-					<span className="loguot" onClick={handleLogout}>
-						Logout
-					</span>
-				</div>
-			</div>
-		</div>
+					<span onClick={handleLogout}>Logout</span>
+				</Box>
+			</ListItemText>
+		</ListItem>
 	);
 }
 

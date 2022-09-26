@@ -4,11 +4,11 @@
 // $bg-color: #d8dee9;
 
 // @media (prefers-color-scheme: dark) {
-$primary-color: #3b4252;
-$secondary-color: #434c5e;
+/* $primary-color: #3b4252;
 $font-color: #e5e9f0;
-$bg-color: #2e3440;
+$bg-color: #2e3440; */
 // }
+$secondary-color: #3d3e3f;
 html {
 	height: -webkit-fill-available;
 }
@@ -18,13 +18,40 @@ body {
 	min-height: 100vh;
 	min-height: -webkit-fill-available;
 	width: 100%;
-	max-height: 100vh;
-	color: $font-color;
-	background: $bg-color;
-	font-size: 14px;
+	max-width: 100%;
+	font-size: 16px;
 	letter-spacing: 1px;
 }
-.image__profile {
+
+.chat-container::-webkit-scrollbar {
+	width: 8px; /* Tamaño del scroll en vertical */
+	height: 8px; /* Tamaño del scroll en horizontal */
+}
+.chat-container::-webkit-scrollbar-thumb {
+	background: rgb(122, 122, 122);
+	border-radius: 4px;
+}
+.chat-container::-webkit-scrollbar-thumb:hover {
+	background: #494949;
+	box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+.chat-container::-webkit-scrollbar-thumb:active {
+	background-color: #000000;
+}
+.chat-container::-webkit-scrollbar-track {
+	background: #4e4e4e;
+	border-radius: 4px;
+}
+.chat-container::-webkit-scrollbar-track:hover,
+.chat-container::-webkit-scrollbar-track:active {
+	background: #494949;
+}
+.chatContact:hover {
+	background-color: $secondary-color;
+}
+/* .image__profile {
 	width: 45px;
 	height: 45;
 	border-radius: 50%;
@@ -147,9 +174,7 @@ body {
 					color: $font-color;
 					border-radius: 15px;
 					padding: 0 10px;
-					&:hover {
-						background-color: $primary-color;
-					}
+					
 				}
 			}
 		}
@@ -299,3 +324,4 @@ body {
 		border: none;
 	}
 }
+ */

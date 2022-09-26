@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 function ProtectedR({ children, isAuthenticated }) {
-	console.log(isAuthenticated);
 	return isAuthenticated || isAuthenticated === "true" ? (
 		children
 	) : (

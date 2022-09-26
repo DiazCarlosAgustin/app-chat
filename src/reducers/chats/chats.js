@@ -7,7 +7,7 @@ export default function chats(state = initialState, action) {
 		case GET_CHAT_BY_USER:
 			return { ...state, chats: action.payload };
 		case POST_NEW_MESSAGE:
-			return { ...state, chats: action.payload };
+			return { ...state, chats: [...state.chats, action.payload] };
 		default:
 			return state;
 	}

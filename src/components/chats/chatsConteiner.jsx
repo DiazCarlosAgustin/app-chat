@@ -5,14 +5,14 @@ import { useEffect, useState } from "react";
 import io from "socket.io-client";
 import { connect } from "react-redux";
 
+import { List, ListItem, Box, ListItemText } from "@mui/material";
+
 import { getUsers } from "../../actions/contacts";
 
 // import sockets from "../../services/socket";
 
 function ChatsConteiner({ getMessagesByUser, dispatch, contacts, user }) {
 	const id = user._id;
-	const server = "http://localhost:3050";
-	const socket = io(server);
 
 	useEffect(() => {
 		// socket.emit("users:online", { id: "630ade79b79c820ab6e2229f" });
@@ -20,21 +20,27 @@ function ChatsConteiner({ getMessagesByUser, dispatch, contacts, user }) {
 		// 	setContacts(users);
 		// });
 		dispatch(getUsers(id));
-	}, []);
+	}, [id]);
 	return (
-		<div className="chats_container">
-			<div className="chats_onlines">
-				Personas conectas ({contacts?.length})
-			</div>
+		<List button>
+			<ListItem>
+				<Box sx={{ textAlign: "center", width: "100%" }}>
+					<ListItemText>
+						Personas conectas ({contacts?.length})
+					</ListItemText>
+				</Box>
+			</ListItem>
 			{contacts &&
 				contacts.map((contact, index) => (
-					<ChatComponent
-						getMessagesByUser={getMessagesByUser}
-						key={index}
-						chat={contact}
-					/>
+					<ListItem key={index}>
+						<ChatComponent
+							getMessagesByUser={getMessagesByUser}
+							key={index}
+							chat={contact}
+						/>
+					</ListItem>
 				))}
-		</div>
+		</List>
 	);
 }
 

@@ -5,7 +5,7 @@ import "./app.scss";
 
 import { Provider } from "react-redux";
 import reducer from "./reducers";
-import { createStore, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
