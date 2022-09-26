@@ -6,20 +6,18 @@ import Login from "./pages/Login";
 
 export default function App() {
 	return (
-		<div className="container">
-			<Router>
-				<Routes>
-					<Route
-						path="/"
-						element={
-							<ProtectedR>
-								<Chat />
-							</ProtectedR>
-						}
-					/>
-					<Route path="/login" element={<Login />} />
-				</Routes>
-			</Router>
-		</div>
+		<Router>
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<ProtectedR>
+							<Chat />
+						</ProtectedR>
+					}
+				/>
+				<Route path="/login" element={<Login />} />
+			</Routes>
+		</Router>
 	);
 }
