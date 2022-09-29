@@ -5,3 +5,6 @@ export const POST_NEW_MESSAGE = "post_new_message";
 
 export const LOGIN_USER = "login_user";
 export const LOGOUT_USER = "logout_user";
+
+export const ADD_NEW_ALERT = "add_new_alert";
+export const CLEAR_ALERTS = "clear_alerts";

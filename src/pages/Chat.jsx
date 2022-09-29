@@ -25,7 +25,7 @@ const darkTheme = createTheme({
 	},
 });
 
-import SendIcon from "@mui/icons-material/send";
+// import SendIcon from "@mui/icons-material/send";
 
 // const server = process.env.REACT_APP_SERVER_SOCKET;
 const server = "http://localhost:3050";
@@ -221,7 +221,7 @@ function Chat({ dispatch, chats, user }) {
 									aria-label="add"
 									onClick={() => handleSendMessage()}
 								>
-									<SendIcon />
+									Enviar
 								</Fab>
 							</Grid>
 						</Grid>

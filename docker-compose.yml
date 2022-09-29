@@ -6,4 +6,11 @@ services:
     command: npm run dev
     image: vite-react:latest
     ports: 
-      - '8000:3000'
+      - '3000:3000'
+    volumes:
+      - .:/home/web
+    networks:
+      - network_test
+networks:
+  network_test:
+    external: true

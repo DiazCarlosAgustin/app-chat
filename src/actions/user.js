@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_USER, LOGOUT_USER } from "./types";
+import { LOGIN_USER, LOGOUT_USER, ADD_NEW_ALERT } from "./types";
 import { server } from "../services/server";
 
 export async function login_user(username, password) {
@@ -16,16 +16,33 @@ export async function login_user(username, password) {
 				},
 			},
 		)
-		.then((result) => result.data);
+		.then((result) => result?.data)
+		.catch((error) => {
+			return error;
+		});
 
-	if (req.data.user) {
+	if (req.data?.user) {
 		localStorage.setItem("user", JSON.stringify(req.data.user));
 		localStorage.setItem("token", JSON.stringify(req.token));
 		localStorage.setItem(
 			"isAuthenticated",
 			JSON.stringify(!!req.data.user),
 		);
+	} else {
+		return {
+			type: ADD_NEW_ALERT,
+			payload: {
+				vertical: "buttom",
+				horizontal: "center",
+				variant: "filled",
+				severity: "error",
+				isOpen: true,
+				message: "El usuario o contraseña no existe.",
+			},
+		};
 	}
+	//En caso que ingrese correctamente.
+
 	return {
 		type: LOGIN_USER,
 		payload: {
