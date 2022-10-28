@@ -51,6 +51,14 @@ body {
 .chatContact:hover {
 	background-color: $secondary-color;
 }
+
+a {
+	text-decoration: none;
+}
+.link {
+	color: inherit;
+	font-weight: bold;
+}
 /* .image__profile {
 	width: 45px;
 	height: 45;

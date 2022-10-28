@@ -1,4 +1,5 @@
-export const GET_USERS = "get_users";
+export const SET_USERS = "get_users";
+export const ADD_USER = "add_user";
 
 export const GET_CHAT_BY_USER = "get_chat_by_user";
 export const POST_NEW_MESSAGE = "post_new_message";

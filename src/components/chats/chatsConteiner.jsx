@@ -7,22 +7,30 @@ import { connect } from "react-redux";
 
 import { List, ListItem, Box, ListItemText } from "@mui/material";
 
-import { getUsers } from "../../actions/contacts";
+import { setContact, addContact } from "../../actions/contacts";
 
-// import sockets from "../../services/socket";
+import socket from "../../services/socket";
 
 function ChatsConteiner({ getMessagesByUser, dispatch, contacts, user }) {
 	const id = user._id;
 
 	useEffect(() => {
-		// socket.emit("users:online", { id: "630ade79b79c820ab6e2229f" });
-		// socket.on("users:connected", (users) => {
-		// 	setContacts(users);
-		// });
-		dispatch(getUsers(id));
+		socket.emit("users:online", { id: id });
 	}, [id]);
+
+	useEffect(() => {
+		socket.on("users:connected", (users) => {
+			dispatch(setContact(users));
+		});
+	}, []);
+
+	useEffect(() => {
+		socket.on("users:newUserLogged", (user) => {
+			dispatch(addContact(user));
+		});
+	}, []);
 	return (
-		<List button>
+		<List sx={{ overflowY: "auto" }}>
 			<ListItem>
 				<Box sx={{ textAlign: "center", width: "100%" }}>
 					<ListItemText>

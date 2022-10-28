@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import logout_user from "../../actions/user";
+import { logout_user } from "../../actions/user";
 import { Navigate, useLocation } from "react-router-dom";
 import {
 	ListItem,
@@ -13,7 +13,7 @@ import {
 function HeadProfile({ dispatch, user, isAuthenticated }) {
 	const location = useLocation();
 	const handleLogout = () => {
-		dispatch(logout_user());
+		dispatch(logout_user(user._id));
 		return <Navigate to="/login" state={{ from: location }} replace />;
 	};
 	return (

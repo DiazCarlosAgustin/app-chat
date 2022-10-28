@@ -48,12 +48,12 @@ function Chat({ dispatch, chats, user }) {
 		console.log(nameTo);
 		setNameTo(name_to);
 
-		await socket.emit("chat:startChat", { to: to, from: from });
+		await socket.emit("chat:startChat", { to: user_to, from: from });
 		await dispatch(getChatByUser(from, user_to));
 
 		messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
 	};
-	const handleSendMessage = () => {
+	const handleSendMessage = async () => {
 		const params = {
 			to: to,
 			from: from,
@@ -78,8 +78,9 @@ function Chat({ dispatch, chats, user }) {
 		};
 	}, [isConnected]);
 
-	useEffect(() => {
+	useEffect(async () => {
 		socket.on("getMessage", async (msg) => {
+			console.log(msg);
 			await dispatch(send_new_message(msg.data));
 			messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
 		});

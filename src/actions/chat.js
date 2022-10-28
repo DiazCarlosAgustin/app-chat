@@ -19,6 +19,7 @@ export async function getChatByUser(from, to) {
 }
 
 export async function send_new_message(msg) {
+	console.log(msg);
 	return {
 		type: POST_NEW_MESSAGE,
 		payload: msg,
