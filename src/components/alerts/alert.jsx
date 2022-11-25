@@ -7,7 +7,7 @@ import { Icon, IconButton } from "@material-ui/core";
 function AlertComponent({ alerts }) {
 	const dispatch = useDispatch();
 	function handleClose() {
-		// dispatch(clear_alerts());
+		dispatch(clear_alerts());
 	}
 	console.log(alerts.severity);
 	return alerts?.isOpen == true ? (

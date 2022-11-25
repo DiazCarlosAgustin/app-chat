@@ -1,6 +1,10 @@
-import { GET_CHAT_BY_USER, POST_NEW_MESSAGE } from "../../actions/types";
+import {
+	GET_CHAT_BY_USER,
+	POST_NEW_MESSAGE,
+	OPEN_CHAT,
+} from "../../actions/types";
 
-const initialState = [];
+const initialState = { chats: [], openChat: false };
 
 export default function chats(state = initialState, action) {
 	switch (action.type) {
@@ -8,6 +12,11 @@ export default function chats(state = initialState, action) {
 			return { ...state, chats: action.payload };
 		case POST_NEW_MESSAGE:
 			return { ...state, chats: [...state.chats, action.payload] };
+		case OPEN_CHAT:
+			return {
+				...state,
+				openChat: !state.openChat,
+			};
 		default:
 			return state;
 	}

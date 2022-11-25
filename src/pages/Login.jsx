@@ -3,17 +3,8 @@ import { Link, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { login_user, loging_user_with_random_user } from "../actions/user";
 
-import { Paper, Grid, Typography, TextField, Button } from "@mui/material";
+import { Grid, Typography, TextField } from "@mui/material";
 import LoadingButton from "@mui/lab/LoadingButton";
-
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-
-const darkTheme = createTheme({
-	palette: {
-		mode: "dark",
-	},
-});
 
 function Login({ dispatch, isAuthenticated }) {
 	const [username, setUsername] = useState("");
@@ -47,121 +38,76 @@ function Login({ dispatch, isAuthenticated }) {
 	}
 
 	return (
-		<ThemeProvider theme={darkTheme}>
-			<CssBaseline />
-			<Grid
-				container
-				sx={{
-					height: "100vh",
-					maxHeight: "100vh",
-					width: "100%",
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-				}}
-			>
-				<Grid
-					item
-					xs={12}
-					md={4}
-					lg={3}
-					elevation={3}
-					component={Paper}
-					sx={{ padding: "25px" }}
-					square={true}
-				>
-					<Grid item sx={{ padding: "10px 0", textAlign: "center" }}>
-						<Typography variant="h4" sx={{ fontWeight: "bold" }}>
-							Welcome Back
-						</Typography>
-						<p sx={{ fontWeight: "semibold" }}>
-							Enter your credentials to access your account
-						</p>
-					</Grid>
-					<form>
-						<Grid
-							container
-							sx={{
-								padding: "10px 0",
-								textAlign: "center",
-								display: "flex",
-								flexDirection: "column",
-							}}
-						>
-							<Grid
-								item
-								sx={{ padding: "10px 0", width: "100%" }}
+		<div className="max-h-screen h-screen w-ful flex justify-center items-center align-middle dark:text-slate-50 text-gray-900 bg-slate-100 dark:bg-gray-900">
+			<div className="w-auto h-auto p-9 max-w-sm rounded-md">
+				<div className="py-4 text-center">
+					<h3 className="text-3xl py-1">Welcome Back</h3>
+					<h5>Enter your credentials to access your account</h5>
+				</div>
+				<form>
+					<div className="py-3 text-center flex flex-col">
+						<div className="py-3 w-full">
+							<input
+								type="text"
+								id="username"
+								className="dark:text-slate-50 text-gray-900 h-14 w-full rounded-lg px-2 border-2 dark:border-none dark:bg-gray-700"
+								placeholder="Usuario"
+								autoComplete="username"
+								value={username}
+								onChange={(e) => setUsername(e.target.value)}
+							/>
+						</div>
+						<div className="py-3 w-full">
+							<input
+								type="password"
+								id="password"
+								className="dark:text-slate-50 text-gray-900 h-14 w-full rounded-lg px-2 border-2 dark:border-none dark:bg-gray-700"
+								placeholder="Password"
+								autoComplete="current-password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+						</div>
+						<div className="form_imput my-3">
+							<LoadingButton
+								sx={{ width: "100%" }}
+								size="medium"
+								loading={loading}
+								onClick={handleLogin}
+								loadingIndicator="Loading…"
+								variant="contained"
+								type="submit"
 							>
-								<TextField
-									sx={{ width: "100%" }}
-									name="username"
-									id="username"
-									label="username"
-									autoComplete="username"
-									onChange={(e) =>
-										setUsername(e.target.value)
-									}
-									value={username}
-								/>
-							</Grid>
-							<Grid
-								item
-								sx={{ padding: "10px 0", width: "100%" }}
+								Ingresar
+							</LoadingButton>
+						</div>
+						<div className="form_imput">
+							<LoadingButton
+								sx={{ width: "100%", margin: "10px 0" }}
+								size="medium"
+								loading={loading}
+								onClick={login_random_user}
+								loadingIndicator="Loading…"
+								variant="text"
+								type="button"
 							>
-								<TextField
-									sx={{ width: "100%" }}
-									type="password"
-									name="password"
-									id="password"
-									label="password"
-									autoComplete="current-password"
-									onChange={(e) =>
-										setPassword(e.target.value)
-									}
-									value={password}
-								/>
-							</Grid>
-							<Grid item className="form_imput">
-								<LoadingButton
-									sx={{ width: "100%" }}
-									size="medium"
-									loading={loading}
-									onClick={handleLogin}
-									loadingIndicator="Loading…"
-									variant="contained"
-									type="submit"
-								>
-									Ingresar
-								</LoadingButton>
-							</Grid>
-							<Grid item className="form_imput">
-								<LoadingButton
-									sx={{ width: "100%", margin: "10px 0" }}
-									size="medium"
-									loading={loading}
-									onClick={login_random_user}
-									loadingIndicator="Loading…"
-									variant="text"
-									type="button"
-								>
-									Sign in with Random User
-								</LoadingButton>
-							</Grid>
-						</Grid>
-					</form>
-					<Grid item sx={{ textAlign: "center", width: "100%" }}>
-						<Typography variant="text" className="">
-							Don't have an account?{" "}
-							{
-								<Link to="/register" className="link">
-									Sing Up
-								</Link>
-							}
-						</Typography>
-					</Grid>
-				</Grid>
-			</Grid>
-		</ThemeProvider>
+								Sign in with Random User
+							</LoadingButton>
+						</div>
+					</div>
+				</form>
+				<div className="text-center w-full">
+					<p className="">
+						Don't have an account?{" "}
+						{
+							<Link to="/register" className="link">
+								Sing Up
+							</Link>
+						}
+					</p>
+				</div>
+			</div>
+		</div>
 	);
 }
 

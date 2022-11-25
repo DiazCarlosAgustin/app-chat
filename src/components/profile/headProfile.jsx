@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { logout_user } from "../../actions/user";
 import { Navigate, useLocation } from "react-router-dom";
-import {
-	ListItem,
-	ListItemIcon,
-	ListItemText,
-	Box,
-	Avatar,
-} from "@mui/material";
+import { List, ListItemIcon, ListItemText, Box, Avatar } from "@mui/material";
 
 function HeadProfile({ dispatch, user, isAuthenticated }) {
 	const location = useLocation();
@@ -17,8 +11,8 @@ function HeadProfile({ dispatch, user, isAuthenticated }) {
 		return <Navigate to="/login" state={{ from: location }} replace />;
 	};
 	return (
-		<ListItem>
-			<ListItemIcon className="sider_image_profile">
+		<div className="flex pr-3 items-center">
+			<div className="sider_image_profile pr-2 ">
 				{user.image.includes("http") ? (
 					<Avatar
 						src={`${user.image}`}
@@ -33,15 +27,17 @@ function HeadProfile({ dispatch, user, isAuthenticated }) {
 						alt="img_profile"
 					/>
 				)}
-			</ListItemIcon>
-			<ListItemText>
-				<div>{user.username}</div>
-				<Box sx={{ display: "flex", justifyContent: "space-between" }}>
+			</div>
+			<div className="block w-full">
+				<div className="px-2">{user.username}</div>
+				<div className="flex justify-between w-full">
 					<span>{isAuthenticated ? "Connected" : "Offline"}</span>
-					<span onClick={handleLogout}>Logout</span>
-				</Box>
-			</ListItemText>
-		</ListItem>
+					<span className="cursor-pointer" onClick={handleLogout}>
+						Logout
+					</span>
+				</div>
+			</div>
+		</div>
 	);
 }
 

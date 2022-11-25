@@ -1,15 +1,19 @@
 import React from "react";
-import { Avatar, Grid, Box, ListItemText } from "@mui/material";
-
+import { Avatar } from "@mui/material";
+import { openChat } from "../../actions/chat";
+import { useDispatch } from "react-redux";
 export default function ChatComponent({ chat, getMessagesByUser }) {
+	const dispatch = useDispatch();
+	const handleContact = async () => {
+		dispatch(openChat());
+		getMessagesByUser(chat._id, chat.username);
+	};
 	return (
-		<Grid
-			container
-			onClick={() => getMessagesByUser(chat._id, chat.username)}
-			className="chatContact"
-			sx={{ width: "100%", padding: "10px" }}
+		<div
+			onClick={handleContact}
+			className="chatContact flex justify-start py-4 px-2 w-full h-full items-center hover:dark:bg-gray-700"
 		>
-			<Grid item xs={4}>
+			<div className="pr-3">
 				{chat.image.includes("http") ? (
 					<Avatar
 						src={`${chat.image}`}
@@ -23,26 +27,13 @@ export default function ChatComponent({ chat, getMessagesByUser }) {
 						alt="img_profile"
 					/>
 				)}
-			</Grid>
-			<Grid item xs={8}>
-				<Box
-					sx={{
-						display: "flex",
-						alignItems: "center",
-						height: "100%",
-					}}
-				>
-					<ListItemText>{chat.username}</ListItemText>
-				</Box>
-				{/* <div className="chat_message">
-					<span>{chat.message}</span>
-				</div> */}
-			</Grid>
-			{/* <div className="message_count">
-				<span className="bubble_count">
-					{chat.count <= 9 ? chat.count : "+9"}
-				</span>
-			</div> */}
-		</Grid>
+			</div>
+			<div className="flex justify-between items-center w-full">
+				<div className="flex justify-items-center h-full">
+					<div>{chat.username}</div>
+				</div>
+				<span className="w-3 h-3 bg-green-500 block rounded-full"></span>
+			</div>
+		</div>
 	);
 }

@@ -2,7 +2,6 @@ import ChatComponent from "./chatComponent";
 
 import React from "react";
 import { useEffect, useState } from "react";
-import io from "socket.io-client";
 import { connect } from "react-redux";
 
 import { List, ListItem, Box, ListItemText } from "@mui/material";
@@ -30,25 +29,25 @@ function ChatsConteiner({ getMessagesByUser, dispatch, contacts, user }) {
 		});
 	}, []);
 	return (
-		<List sx={{ overflowY: "auto" }}>
-			<ListItem>
-				<Box sx={{ textAlign: "center", width: "100%" }}>
-					<ListItemText>
-						Personas conectas ({contacts?.length})
-					</ListItemText>
-				</Box>
-			</ListItem>
-			{contacts &&
-				contacts.map((contact, index) => (
-					<ListItem key={index}>
-						<ChatComponent
-							getMessagesByUser={getMessagesByUser}
-							key={index}
-							chat={contact}
-						/>
-					</ListItem>
-				))}
-		</List>
+		<div className="h-full max-h-screen overflow-y-auto my-3 snap-none">
+			<div className="my-3 w-full">
+				<div className="w-full text-center">
+					<div>Personas conectas ({contacts?.length})</div>
+				</div>
+			</div>
+			<div className="h-auto">
+				{contacts &&
+					contacts.map((contact, index) => (
+						<div key={index}>
+							<ChatComponent
+								getMessagesByUser={getMessagesByUser}
+								key={index}
+								chat={contact}
+							/>
+						</div>
+					))}
+			</div>
+		</div>
 	);
 }
 

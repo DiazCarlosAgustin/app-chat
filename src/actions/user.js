@@ -84,7 +84,6 @@ export async function loging_user_with_random_user() {
 	};
 
 	if (validUser !== null) {
-		console.log("object");
 	} else {
 		await register(jsonUser);
 	}
